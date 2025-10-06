@@ -4,6 +4,7 @@ import cv2
 import os
 from scipy import signal
 from scipy import misc
+import imageio.v2 as imageio
 from motion_blur.generate_PSF import PSF
 from motion_blur.generate_trajectory import Trajectory
 
@@ -20,7 +21,7 @@ class BlurImage(object):
         """
         if os.path.isfile(image_path):
             self.image_path = image_path
-            self.original = misc.imread(self.image_path)
+            self.original = imageio.imread(self.image_path)
             self.shape = self.original.shape
             if len(self.shape) < 3:
                 raise Exception('We support only RGB images yet.')
